@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crayv'n Crumbs</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body{margin:0;font-family:'Poppins',sans-serif;background:#faf7ff;color:#4b3b5a}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 50px;background:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.05)}
+header img{width:140px}
+nav a{margin:0 20px;text-decoration:none;color:#6b5a7a}
+.hero{height:80vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(rgba(255,255,255,.6),rgba(255,255,255,.6)),url('https://images.unsplash.com/photo-1559622214-8f2f1c4b3d69');background-size:cover}
+.hero h1{font-size:50px}
+.btn{background:#c7a6ff;padding:14px 25px;border-radius:30px;border:none;cursor:pointer;transition:.3s}
+.btn:hover{transform:scale(1.08)}
+.section{padding:80px 20px;max-width:1200px;margin:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px}
+.card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,.05);transition:.4s}
+.card:hover{transform:translateY(-10px) scale(1.02)}
+.card img{width:100%;height:220px;object-fit:cover}
+.card-content{padding:20px}
+.cart{position:fixed;right:20px;bottom:20px;background:#fff;padding:20px;border-radius:15px;width:300px;box-shadow:0 10px 30px rgba(0,0,0,.1)}
+input{width:100%;margin:5px 0;padding:8px}
+footer{text-align:center;padding:20px;font-size:12px;opacity:.6}
+.fade{opacity:0;transform:translateY(20px);transition:1s}
+.fade.show{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<header>
+<img src="image.png">
+<nav><a href="#menu">Menu</a></nav>
+</header>
+
+<div class="hero">
+<h1>Crayv'n Crumbs</h1>
+<p>Luxury handmade desserts 💜</p>
+<button class="btn" onclick="scrollToMenu()">Explore</button>
+</div>
+
+<div class="section fade" id="delivery">
+<h2>Next Day Delivery</h2>
+<p style="text-align:center;max-width:600px;margin:auto">We offer next day delivery on all products. Please place your order at least 1 day in advance.</p>
+</div>
+
+<div class="section" id="menu">
+
+<h2>Brownies</h2>
+<div class="grid">
+<div class="card"><img src="brownie.jpg"><div class="card-content"><h3>Box of 4</h3><p>Rs.680</p><button onclick="addToCart('Brownies 4',680)">Add</button></div></div>
+<div class="card"><img src="brownie.jpg"><div class="card-content"><h3>Box of 6</h3><p>Rs.1020</p><button onclick="addToCart('Brownies 6',1020)">Add</button></div></div>
+<div class="card"><img src="brownie.jpg"><div class="card-content"><h3>Box of 8</h3><p>Rs.1360</p><button onclick="addToCart('Brownies 8',1360)">Add</button></div></div>
+<div class="card"><img src="brownie.jpg"><div class="card-content"><h3>Box of 10</h3><p>Rs.1690</p><button onclick="addToCart('Brownies 10',1690)">Add</button></div></div>
+<div class="card"><img src="brownie.jpg"><div class="card-content"><h3>Box of 12</h3><p>Rs.2040</p><button onclick="addToCart('Brownies 12',2040)">Add</button></div></div>
+</div>
+
+<h2>Tea Cakes</h2>
+<div class="grid">
+<div class="card"><img src="plaincake.jpg"><div class="card-content"><h3>Plain Small</h3><p>Rs.500</p></div></div>
+<div class="card"><img src="plaincake.jpg"><div class="card-content"><h3>Plain Large</h3><p>Rs.1000</p></div></div>
+<div class="card"><img src="marble.jpg"><div class="card-content"><h3>Marble Small</h3><p>Rs.600</p></div></div>
+<div class="card"><img src="marble.jpg"><div class="card-content"><h3>Marble Large</h3><p>Rs.1200</p></div></div>
+</div>
+
+<h2>Khatai</h2>
+<div class="grid">
+<div class="card"><img src="khatai.jpg"><div class="card-content"><h3>Plain 1KG</h3><p>Rs.2500</p></div></div>
+<div class="card"><img src="khatai.jpg"><div class="card-content"><h3>Plain 1/2KG</h3><p>Rs.1250</p></div></div>
+<div class="card"><img src="khatai.jpg"><div class="card-content"><h3>Almond 1KG</h3><p>Rs.3000</p></div></div>
+<div class="card"><img src="khatai.jpg"><div class="card-content"><h3>Almond 1/2KG</h3><p>Rs.1500</p></div></div>
+</div>
+
+</div>
+
+<div class="cart">
+<h3>Cart</h3>
+<ul id="cartItems"></ul>
+<p>Total Rs <span id="total">0</span></p>
+<input type="date" id="date">
+<button onclick="placeOrder()">Place Order</button>
+</div>
+
+<footer>Delivery charges will be paid by customer</footer>
+
+<script>
+let cart=[];let total=0;
+function addToCart(i,p){cart.push({i,p});total+=p;updateCart();}
+function updateCart(){let l=document.getElementById('cartItems');l.innerHTML='';cart.forEach(c=>{let li=document.createElement('li');li.innerText=c.i;l.appendChild(li)});document.getElementById('total').innerText=total}
+function placeOrder(){let d=document.getElementById('date').value;if(!d){alert('Select delivery date');return;}alert('Order placed for '+d);}
+function scrollToMenu(){document.getElementById('menu').scrollIntoView({behavior:'smooth'})}
+
+const faders=document.querySelectorAll('.fade');
+window.addEventListener('scroll',()=>{faders.forEach(el=>{let top=el.getBoundingClientRect().top;if(top<window.innerHeight-50){el.classList.add('show')}})})
+</script>
+
+</body>
+</html>
