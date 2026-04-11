@@ -1,33 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Crayv'n Crumbs</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-body{margin:0;font-family:'Poppins',sans-serif;background:#fff;color:#333}
-header{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;background:#f8f5ff}
-.logo{font-size:28px;font-weight:600;color:#6b4caf}
-nav{display:flex;align-items:center}
-.cart-btn{background:#c7a6ff;border:none;padding:10px 15px;border-radius:20px;cursor:pointer}
-.hero{height:70vh;background:url('plaincake.jpg') center/cover no-repeat;display:flex;flex-direction:column;justify-content:center;padding-left:60px;color:white}
-.hero h1{font-size:50px;margin:0}
-.hero p{font-size:18px}
-.section{padding:60px 20px;max-width:1200px;margin:auto}
-.categories{display:flex;gap:20px;overflow-x:auto}
-.cat{min-width:250px;height:300px;border-radius:20px;overflow:hidden;position:relative;cursor:pointer}
-.cat img{width:100%;height:100%;object-fit:cover}
-.cat span{position:absolute;bottom:20px;left:20px;color:white;font-size:22px;font-weight:600}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-.card{background:#faf7ff;padding:15px;border-radius:15px}
-.card img{width:100%;border-radius:10px}
-.cart{position:fixed;right:-350px;top:0;width:350px;height:100%;background:white;box-shadow:-5px 0 20px rgba(0,0,0,0.1);padding:20px;transition:.3s;overflow:auto}
-.cart.open{right:0}
-footer{text-align:center;padding:30px;font-size:14px}
-.delivery{background:#fde7d9;text-align:center;padding:40px}
-a{color:#6b4caf}
+body {margin:0;font-family:sans-serif;background:#faf7f4;}
+
+header {
+display:flex;
+justify-content:space-between;
+padding:20px;
+background:white;
+box-shadow:0 2px 10px rgba(0,0,0,0.05);
+}
+
+.logo {font-size:28px;font-weight:bold;color:#7c5cff;}
+
+.cart-btn {cursor:pointer;font-size:22px;}
+
+.hero {
+height:80vh;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-size:40px;
+font-weight:bold;
+background-size:cover;
+transition:1s;
+}
+
+.section {padding:40px;}
+
+.grid {
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.card {
+background:white;
+border-radius:15px;
+padding:15px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,0.05);
+}
+
+.card img {width:100%;border-radius:10px;}
+
+button {padding:10px;margin-top:10px;cursor:pointer;}
+
+#cart {
+position:fixed;
+right:-400px;
+top:0;
+width:350px;
+height:100%;
+background:white;
+box-shadow:-5px 0 15px rgba(0,0,0,0.1);
+padding:20px;
+transition:0.3s;
+overflow:auto;
+}
+
+#cart.open {right:0;}
+
+.close {cursor:pointer;font-size:20px;}
+
 </style>
 </head>
 
@@ -35,79 +74,147 @@ a{color:#6b4caf}
 
 <header>
 <div class="logo">Crayv'n Crumbs</div>
-<nav>
-<button class="cart-btn" onclick="toggleCart()">Cart</button>
-</nav>
+
+<div>
+<a href="https://www.instagram.com/crayvn_crumbs/" target="_blank">📷</a>
+<span class="cart-btn" onclick="toggleCart()">🛒</span>
+</div>
 </header>
 
-<div class="hero">
-<h1>Crayv'n Crumbs</h1>
-<p>Luxury handmade desserts 💜</p>
-</div>
+<div class="hero" id="hero">Luxury Desserts</div>
 
+<!-- BROWNIES -->
 <div class="section">
-<h2>Our Products</h2>
-<div class="categories">
-<div class="cat" onclick="showCategory('brownies')"><img src="brownie.jpg"><span>Brownies</span></div>
-<div class="cat" onclick="showCategory('cakes')"><img src="plaincake.jpg"><span>Tea Cakes</span></div>
-<div class="cat" onclick="showCategory('khatai')"><img src="khatai.jpg"><span>Khatai</span></div>
+<h2>Brownies</h2>
+<div class="grid">
+
+<div class="card"><img src="brownie1.jpg"><h3>Box of 4</h3><p>680</p><button onclick="add('Brownie 4',680)">Add</button></div>
+<div class="card"><img src="brownie2.jpg"><h3>Box of 6</h3><p>1020</p><button onclick="add('Brownie 6',1020)">Add</button></div>
+<div class="card"><img src="brownie3.jpg"><h3>Box of 8</h3><p>1360</p><button onclick="add('Brownie 8',1360)">Add</button></div>
+<div class="card"><img src="brownie4.jpg"><h3>Box of 10</h3><p>1690</p><button onclick="add('Brownie 10',1690)">Add</button></div>
+<div class="card"><img src="brownie1.jpg"><h3>Box of 12</h3><p>2000</p><button onclick="add('Brownie 12',2000)">Add</button></div>
+
 </div>
 </div>
 
-<div class="section" id="products"></div>
+<!-- TEA CAKES -->
+<div class="section">
+<h2>Tea Cakes</h2>
+<div class="grid">
 
-<div class="cart" id="cart">
-<h3>Your Cart</h3>
-<ul id="cartItems"></ul>
-<p>Total Rs <span id="total">0</span></p>
-<input id="name" placeholder="Name">
-<input id="phone" placeholder="Phone">
-<textarea id="address" placeholder="Address"></textarea>
-<input type="date" id="date">
-<button onclick="placeOrder()">Checkout</button>
+<div class="card"><img src="plain1.jpg"><h3>Plain Small</h3><p>500</p><button onclick="add('Plain Small',500)">Add</button></div>
+<div class="card"><img src="plain2.jpg"><h3>Plain Large</h3><p>1000</p><button onclick="add('Plain Large',1000)">Add</button></div>
+<div class="card"><img src="marble1.jpg"><h3>Marble Small</h3><p>600</p><button onclick="add('Marble Small',600)">Add</button></div>
+<div class="card"><img src="marble2.jpg"><h3>Marble Large</h3><p>1200</p><button onclick="add('Marble Large',1200)">Add</button></div>
+
+</div>
+</div>
+
+<!-- KHATAI -->
+<div class="section">
+<h2>Khatai</h2>
+<div class="grid">
+
+<div class="card"><img src="khatai1.jpg"><h3>1 KG</h3><p>2500</p><button onclick="add('Khatai 1KG',2500)">Add</button></div>
+<div class="card"><img src="khatai2.jpg"><h3>1/2 KG</h3><p>1250</p><button onclick="add('Khatai Half KG',1250)">Add</button></div>
+
+</div>
+</div>
+
+<!-- CART -->
+<div id="cart">
+<span class="close" onclick="toggleCart()">❌</span>
+
+<h2>Your Cart</h2>
+<ul id="list"></ul>
+<h3 id="total">Total Rs 0</h3>
+
+<input id="name" placeholder="Name"><br><br>
+<input id="phone" placeholder="Phone"><br><br>
+<textarea id="address" placeholder="Address"></textarea><br><br>
+<input type="date" id="date"><br><br>
+
+<h4>Payment</h4>
 <p>Pay via Nayapay: 03164628118</p>
-</div>
+<p>Account: 28010104563491</p>
+<p>IBAN: PK55 MEZN 0028010104563491</p>
+<p>Meezan Bank: TAHIRA BIBI</p>
 
-<div class="delivery">
-<h2>Next Day Delivery</h2>
-<p>For khatais, please order 1 day before. Brownies & tea cakes available same day from 12pm–10pm.</p>
-</div>
+<p style="font-size:12px;">
+Please share screenshots of payments along with the order details.
+</p>
 
-<footer>
-<p>Delivery charges should be paid by customers upon delivery</p>
-<p><a href="https://www.instagram.com/crayvn_crumbs/" target="_blank">Instagram: crayn_crumbs</a></p>
-</footer>
+<button onclick="checkout()">Checkout</button>
+</div>
 
 <script>
-let cart=[];let total=0;
-function toggleCart(){document.getElementById('cart').classList.toggle('open')}
-function addToCart(i,p){cart.push({i,p});total+=p;updateCart()}
-function updateCart(){let l=document.getElementById('cartItems');l.innerHTML='';cart.forEach(c=>{let li=document.createElement('li');li.innerText=c.i;l.appendChild(li)});document.getElementById('total').innerText=total}
+let cart=[];
 
-function showCategory(cat){
-let html='';
-if(cat==='brownies'){
-html=`<div class='grid'>
-<div class='card'><img src='brownie.jpg'><h3>Box of 4</h3><p>680</p><button onclick="addToCart('4',680)">Add</button></div>
-<div class='card'><h3>Box of 6</h3><p>1020</p><button onclick="addToCart('6',1020)">Add</button></div>
-</div>`}
-if(cat==='cakes'){
-html=`<div class='grid'><div class='card'><img src='plaincake.jpg'><h3>Plain Small</h3><p>500</p></div></div>`}
-if(cat==='khatai'){
-html=`<div class='grid'><div class='card'><img src='khatai.jpg'><h3>1KG</h3><p>2500</p></div></div>`}
-
-document.getElementById('products').innerHTML=html;
+function add(name,price){
+cart.push({name,price,qty:1});
+render();
 }
 
-function placeOrder(){
-let name=document.getElementById('name').value;
-let phone=document.getElementById('phone').value;
-let address=document.getElementById('address').value;
-let date=document.getElementById('date').value;
-if(!name||!phone||!address||!date){alert('Fill all');return}
-let msg=`Order:%0A${name}%0A${phone}%0A${address}%0A${date}%0A${cart.map(c=>c.i).join(',')}%0ATotal ${total}`;
-window.open(`https://wa.me/923124366560?text=${msg}`);
+function render(){
+let list=document.getElementById('list');
+let total=0;
+list.innerHTML='';
+
+cart.forEach((item,i)=>{
+let itemTotal=item.price*item.qty;
+total+=itemTotal;
+
+list.innerHTML+=`
+<li>
+${item.name} 
+<br>Rs ${item.price} x ${item.qty}
+<br>Total: ${itemTotal}
+<br>
+<button onclick="change(${i},1)">+</button>
+<button onclick="change(${i},-1)">-</button>
+<button onclick="removeItem(${i})">❌</button>
+</li><br>`;
+});
+
+document.getElementById('total').innerText="Total Rs "+total;
 }
+
+function change(i,val){
+cart[i].qty+=val;
+if(cart[i].qty<=0) cart.splice(i,1);
+render();
+}
+
+function removeItem(i){
+cart.splice(i,1);
+render();
+}
+
+function toggleCart(){
+document.getElementById('cart').classList.toggle('open');
+}
+
+function checkout(){
+let text="Order:%0A";
+
+cart.forEach(i=>{
+text+=i.name+" x "+i.qty+"%0A";
+});
+
+text+="Name: "+name.value+"%0A";
+text+="Phone: "+phone.value+"%0A";
+text+="Address: "+address.value+"%0A";
+
+window.open("https://wa.me/923124366560?text="+text);
+}
+
+// HERO SLIDER
+let images=["brownie1.jpg","plain1.jpg","khatai1.jpg"];
+let i=0;
+setInterval(()=>{
+i=(i+1)%images.length;
+document.getElementById("hero").style.backgroundImage=`url(${images[i]})`;
+},3000);
 </script>
 
 </body>
