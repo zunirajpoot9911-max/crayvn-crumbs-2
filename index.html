@@ -33,28 +33,10 @@ display:flex;justify-content:center;align-items:center;
 background-size:cover;background-position:center;
 }
 
-.hero {
-  position: relative;
-  height: 60vh;
-  min-height: 350px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #fff;
-  overflow: hidden;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  transition: opacity 1s ease-in-out;
-  z-index: -1;
-  opacity: 1;
+.hero h1 {
+font-size:32px;color:#b57edc;
+background:rgba(255,255,255,0.85);
+padding:10px 20px;border-radius:10px;
 }
 
 /* PRODUCTS */
@@ -259,30 +241,6 @@ text+=`Name: ${name.value}%0APhone: ${phone.value}%0AAddress: ${address.value}%0
 
 window.open("https://wa.me/923124366560?text="+text);
 }
-<script>
-const heroImages = [
-  "brownie1.jpg",
-  "brownie2.jpg",
-  "cake1.jpg",
-  "cake2.jpg",
-  "khatai1.jpg"
-];
-
-let heroIndex = 0;
-const hero = document.querySelector(".hero");
-
-function changeHeroImage() {
-  hero.style.backgroundImage = `url(${heroImages[heroIndex]})`;
-  hero.style.backgroundSize = "cover";
-  hero.style.backgroundPosition = "center";
-  heroIndex = (heroIndex + 1) % heroImages.length;
-}
-
-// First load
-changeHeroImage();
-
-// Change every 3 seconds
-setInterval(changeHeroImage, 3000);
 </script>
 
 </body>
