@@ -2,116 +2,128 @@
 <html>
 <head>
 <title>Crayv'n Crumbs</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body {margin:0;font-family:sans-serif;background:#faf7f4}
+body {margin:0;font-family:sans-serif;background:#faf7f4;color:#333;}
 
-/* HEADER */
 header {
-display:flex;justify-content:space-between;align-items:center;
-padding:15px;background:white;
+display:flex;
+justify-content:space-between;
+padding:15px 20px;
+background:white;
+box-shadow:0 2px 10px rgba(0,0,0,0.05);
+align-items:center;
 }
+
 .logo {
-font-size:22px;
+font-size:28px;
 font-weight:bold;
 color:#b57edc;
-font-family:cursive;
 }
 
-/* ICONS */
-.icons {display:flex;gap:15px;align-items:center}
-.icon {font-size:22px;cursor:pointer;position:relative}
+.cart-btn {cursor:pointer;font-size:22px;margin-left:15px;}
 
-/* BADGE */
-.badge {
-position:absolute;top:-6px;right:-6px;
-background:red;color:white;font-size:10px;
-padding:3px 6px;border-radius:50%
-}
-
-/* HERO */
 .hero {
-height:70vh;
+height:80vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-background:url('plain1.jpg') center/cover;
-}
-.hero h1 {font-size:34px;color:#c8a2c8;font-family:cursive}
-.hero p {color:white}
-
-/* SEARCH */
-.search-box {display:flex;justify-content:center;margin:10px}
-#search {
-width:80%;padding:10px;border-radius:8px;border:1px solid #ddd
+background-size:cover;
+background-position:center;
+transition:1s;
 }
 
-/* GRID */
+.hero h1 {
+font-size:42px;
+font-weight:900;
+color:#b57edc;
+background:rgba(255,255,255,0.8);
+padding:10px 20px;
+border-radius:10px;
+}
+
+.hero p {
+color:#555;
+font-size:18px;
+margin-top:10px;
+}
+
+.section {padding:30px;}
+
 .grid {
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-gap:15px;padding:20px
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
 }
 
 .card {
-background:white;padding:10px;border-radius:10px;text-align:center
+background:white;
+border-radius:15px;
+padding:15px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,0.05);
 }
+
 .card img {
-width:100%;height:120px;object-fit:cover;border-radius:8px
+width:100%;
+height:200px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.card h3 {margin:10px 0 5px;}
+.card p {font-size:14px;color:#666;}
+
+.price {font-weight:bold;color:#000;margin-top:5px;}
+
+button {
+padding:8px 15px;
+margin-top:10px;
+cursor:pointer;
+background:#b57edc;
+border:none;
+color:white;
+border-radius:8px;
 }
 
 /* CART */
 #cart {
-position:fixed;right:-100%;top:0;
-width:100%;max-width:350px;height:100%;
-background:white;padding:20px;
-transition:0.3s;overflow:auto;z-index:999
-}
-#cart.open {right:0}
-
-.close {cursor:pointer;font-size:20px}
-
-/* FLOAT BUTTONS */
-.float {
 position:fixed;
-width:55px;height:55px;
-border-radius:50%;
-display:flex;justify-content:center;align-items:center;
-box-shadow:0 4px 15px rgba(0,0,0,0.2);
+right:-100%;
+top:0;
+width:300px;
+height:100%;
+background:white;
+box-shadow:-5px 0 15px rgba(0,0,0,0.1);
+padding:20px;
+transition:0.3s;
+overflow:auto;
 z-index:999;
 }
-#instaFloat {bottom:90px;right:20px;background:white}
-#whatsappFloat {bottom:20px;right:20px;background:#25D366}
 
-.float img {width:28px}
-
-/* POPUP */
-#popup {
-position:fixed;
-bottom:20px;
-left:20px;
-background:white;
-padding:15px;
-border-radius:10px;
-box-shadow:0 4px 15px rgba(0,0,0,0.2);
-display:none;
-max-width:250px;
-}
-#popup button {
-margin-top:10px;
-background:#7c5cff;
-color:white;
-border:none;
-padding:5px 10px;
-border-radius:5px;
-}
+#cart.open {right:0;}
+.close {cursor:pointer;font-size:20px;}
 
 /* DELIVERY */
-.delivery {background:#f4e3d7;padding:30px;text-align:center}
-.footer {text-align:center;padding:15px;font-size:12px;color:#777}
+.delivery {
+background:#f4e3d7;
+padding:40px;
+text-align:center;
+}
+
+.footer-note {
+text-align:center;
+padding:20px;
+color:#777;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+.hero h1 {font-size:28px;}
+#cart {width:90%;}
+}
 </style>
 </head>
 
@@ -119,128 +131,154 @@ border-radius:5px;
 
 <header>
 <div class="logo">Crayv'n Crumbs</div>
-
-<div class="icons">
-
-<a href="https://www.instagram.com/crayvn_crumbs/" target="_blank">
-<img src="instagram.png" width="24">
-</a>
-
-<span class="icon" onclick="focusSearch()">🔍</span>
-
-<span class="icon" onclick="toggleCart()">
-🛒 <span id="count" class="badge">0</span>
-</span>
-
+<div>
+<span class="cart-btn" onclick="toggleCart()">🛒</span>
 </div>
 </header>
 
-<div class="search-box">
-<input id="search" placeholder="Search..." onkeyup="searchProducts()">
-</div>
-
-<div class="hero">
+<div class="hero" id="hero">
 <h1>Crayv'n Crumbs</h1>
 <p>Luxury handmade desserts 💜</p>
 </div>
 
-<div class="grid" id="products"></div>
+<!-- BROWNIES -->
+<div class="section">
+<h2>Brownies</h2>
+<div class="grid">
 
+<div class="card">
+<img src="brownie1.jpg">
+<h3>Box of 4</h3>
+<p>Rich, fudgy brownies crafted with premium cocoa for a perfectly indulgent bite.</p>
+<div class="price">Rs 680</div>
+<button onclick="add('Brownie 4',680)">Add</button>
+</div>
+
+<div class="card">
+<img src="brownie2.jpg">
+<h3>Box of 6</h3>
+<p>Soft, gooey centers with a crisp top layer — a perfect balance of texture and flavor.</p>
+<div class="price">Rs 1020</div>
+<button onclick="add('Brownie 6',1020)">Add</button>
+</div>
+
+<div class="card">
+<img src="brownie3.jpg">
+<h3>Box of 8</h3>
+<p>Perfect for sharing, delivering rich chocolate satisfaction in every bite.</p>
+<div class="price">Rs 1360</div>
+<button onclick="add('Brownie 8',1360)">Add</button>
+</div>
+
+<div class="card">
+<img src="brownie4.jpg">
+<h3>Box of 10</h3>
+<p>A generous box of handcrafted brownies ideal for gatherings and celebrations.</p>
+<div class="price">Rs 1690</div>
+<button onclick="add('Brownie 10',1690)">Add</button>
+</div>
+
+<div class="card">
+<img src="brownie1.jpg">
+<h3>Box of 12</h3>
+<p>The ultimate indulgence — rich, dense brownies made for true chocolate lovers.</p>
+<div class="price">Rs 2000</div>
+<button onclick="add('Brownie 12',2000)">Add</button>
+</div>
+
+</div>
+</div>
+
+<!-- DELIVERY -->
 <div class="delivery">
-<h3>Next Day Delivery</h3>
+<h2>Next Day Delivery</h2>
 <p>
-For Khatais, we require 1 day advance order.<br>
-Brownies and Tea Cakes are available for same day delivery between 12 PM – 8 PM.
+For khatais, orders must be placed one day in advance.<br>
+Brownies and tea cakes are available for same-day delivery between 12 PM – 8 PM.
 </p>
 </div>
 
-<div class="footer">
-Delivery charges should be paid by customers upon delivery.
+<div class="footer-note">
+Delivery charges should be paid by customers upon delivery.<br>
+Please send screenshots of payments alongside the order details to avoid any inconveniences.
 </div>
 
 <!-- CART -->
 <div id="cart">
 <span class="close" onclick="toggleCart()">❌</span>
-<h3>Your Cart</h3>
-<div id="cartItems"></div>
-</div>
 
-<!-- FLOAT BUTTONS -->
-<a href="https://www.instagram.com/crayvn_crumbs/" target="_blank" id="instaFloat" class="float">
-<img src="instagram.png">
-</a>
+<h2>Your Cart</h2>
+<ul id="list"></ul>
+<h3 id="total">Total Rs 0</h3>
 
-<a href="https://wa.me/923164628118" target="_blank" id="whatsappFloat" class="float">
-<img src="whatsapp.png">
-</a>
+<input id="name" placeholder="Name"><br><br>
+<input id="phone" placeholder="Phone"><br><br>
+<textarea id="address" placeholder="Address"></textarea><br><br>
+<input type="date" id="date"><br><br>
 
-<!-- POPUP -->
-<div id="popup">
-<b>Follow us on Instagram 💜</b>
-<p>See fresh bakes & offers daily!</p>
-<a href="https://www.instagram.com/crayvn_crumbs/" target="_blank">
-<button>Follow Now</button>
-</a>
+<h4>Payment</h4>
+<p>IBAN: PK55 MEZN 0028010104563491</p>
+<p>Account Title: TAHIRA BIBI</p>
+
+<button onclick="checkout()">Checkout</button>
 </div>
 
 <script>
-
-/* PRODUCTS */
-let products=[
-{name:"Brownie Box 4",price:680,img:"brownie1.jpg"},
-{name:"Brownie Box 6",price:1020,img:"brownie2.jpg"},
-{name:"Plain Cake",price:500,img:"plain1.jpg"},
-{name:"Khatai",price:2500,img:"khatai1.jpg"}
-];
-
 let cart=[];
 
-/* LOAD */
-function loadProducts(){
-let html="";
-products.forEach((p,i)=>{
-html+=`
-<div class="card">
-<img src="${p.img}">
-<p>${p.name}</p>
-<p>Rs ${p.price}</p>
-<button onclick="add(${i})">Add</button>
-</div>`;
-});
-document.getElementById("products").innerHTML=html;
-}
-loadProducts();
-
-/* CART */
-function add(i){
-cart.push(products[i]);
-document.getElementById("count").innerText=cart.length;
+function add(name,price){
+cart.push({name,price});
+render();
 }
 
-/* SEARCH */
-function searchProducts(){
-let q=search.value.toLowerCase();
-let filtered=products.filter(p=>p.name.toLowerCase().includes(q));
-let html="";
-filtered.forEach(p=>{
-html+=`<div class="card"><img src="${p.img}"><p>${p.name}</p></div>`;
+function render(){
+let list=document.getElementById('list');
+let total=0;
+list.innerHTML='';
+
+cart.forEach((item,i)=>{
+total+=item.price;
+
+list.innerHTML+=`
+<li>
+${item.name} - Rs ${item.price}
+<button onclick="removeItem(${i})">❌</button>
+</li><br>`;
 });
-products.innerHTML=html;
+
+document.getElementById('total').innerText="Total Rs "+total;
+}
+
+function removeItem(i){
+cart.splice(i,1);
+render();
 }
 
 function toggleCart(){
-cart.classList.toggle("open");
+document.getElementById('cart').classList.toggle('open');
 }
 
-function focusSearch(){
-search.focus();
+function checkout(){
+let text="Order:%0A";
+
+cart.forEach(i=>{
+text+=i.name+" - Rs "+i.price+"%0A";
+});
+
+text+="Name: "+name.value+"%0A";
+text+="Phone: "+phone.value+"%0A";
+text+="Address: "+address.value+"%0A";
+text+="Date: "+date.value;
+
+window.open("https://wa.me/923124366560?text="+text);
 }
 
-/* POPUP TIMER */
-setTimeout(()=>{
-document.getElementById("popup").style.display="block";
-},4000);
-
+let images=["brownie1.jpg","plain1.jpg","khatai1.jpg"];
+let i=0;
+setInterval(()=>{
+i=(i+1)%images.length;
+document.getElementById("hero").style.backgroundImage=`url(${images[i]})`;
+},3000);
 </script>
 
 </body>
