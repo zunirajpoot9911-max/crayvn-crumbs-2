@@ -14,59 +14,33 @@ background:white;
 align-items:center;
 }
 
-.logo {
-font-size:24px;
-font-weight:bold;
-color:#b57edc;
-}
+.logo {font-size:24px;font-weight:bold;color:#b57edc;}
 
-.icons {
-display:flex;
-align-items:center;
-gap:15px;
-position:relative;
-}
+.icons {display:flex;align-items:center;gap:15px;position:relative;}
 
-.cart-btn {
-cursor:pointer;
-font-size:26px;
-position:relative;
-}
+.cart-btn {cursor:pointer;font-size:26px;position:relative;}
 
 .cart-count {
-position:absolute;
-top:-8px;
-right:-10px;
-background:red;
-color:white;
-font-size:12px;
-padding:2px 6px;
-border-radius:50%;
-display:none;
+position:absolute;top:-8px;right:-10px;
+background:red;color:white;font-size:12px;
+padding:2px 6px;border-radius:50%;display:none;
 }
 
 /* HERO */
 .hero {
-height:60vh;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-background-size:cover;
-background-position:center;
+height:55vh;
+display:flex;justify-content:center;align-items:center;
+background-size:cover;background-position:center;
 }
 
 .hero h1 {
-font-size:34px;
-color:#b57edc;
+font-size:32px;color:#b57edc;
 background:rgba(255,255,255,0.85);
-padding:10px 20px;
-border-radius:10px;
+padding:10px 20px;border-radius:10px;
 }
 
 /* PRODUCTS */
 .section {padding:30px;}
-
 .grid {
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -74,72 +48,34 @@ gap:20px;
 }
 
 .card {
-background:white;
-padding:15px;
-border-radius:15px;
-text-align:center;
+background:white;padding:15px;border-radius:15px;text-align:center;
 }
-
 .card img {
-width:100%;
-height:180px;
-object-fit:cover;
-border-radius:10px;
+width:100%;height:180px;object-fit:cover;border-radius:10px;
 }
-
 .price {font-weight:bold;margin-top:5px;}
-
 button {
-padding:6px 10px;
-margin-top:10px;
-background:#b57edc;
-color:white;
-border:none;
-border-radius:8px;
-cursor:pointer;
+padding:6px 10px;margin-top:10px;
+background:#b57edc;color:white;border:none;border-radius:8px;
 }
 
 /* CART */
 #cart {
-position:fixed;
-right:-100%;
-top:0;
-width:320px;
-height:100%;
-background:white;
-padding:20px;
-transition:0.3s;
-overflow:auto;
-z-index:999;
+position:fixed;right:-100%;top:0;width:320px;height:100%;
+background:white;padding:20px;transition:0.3s;overflow:auto;
 }
-
 #cart.open {right:0;}
 
-.qty-btn {
-padding:2px 6px;
-margin:0 5px;
-}
-
 .delivery {
-background:#d9c7b8;
-text-align:center;
-padding:40px 20px;
+background:#d9c7b8;text-align:center;padding:40px 20px;
 }
 
-.review-box {
-background:#f5f5f5;
-padding:30px;
+.review-box {background:#f5f5f5;padding:30px;}
+.review-item {
+background:white;padding:10px;margin-top:10px;border-radius:8px;
 }
 
-.footer {
-text-align:center;
-padding:15px;
-}
-
-@media(max-width:600px){
-.hero {height:50vh;}
-.hero h1 {font-size:24px;}
-}
+.footer {text-align:center;padding:15px;}
 </style>
 </head>
 
@@ -154,10 +90,8 @@ padding:15px;
 </a>
 
 <div class="cart-btn" onclick="toggleCart()">
-🛒
-<span class="cart-count" id="cartCount">0</span>
+🛒 <span id="cartCount" class="cart-count">0</span>
 </div>
-
 </div>
 </header>
 
@@ -166,15 +100,61 @@ padding:15px;
 </div>
 
 <!-- PRODUCTS -->
+
 <div class="section">
 <h2>Brownies</h2>
 <div class="grid">
-<div class="card"><img src="brownie1.jpg"><h3>Box of 4</h3><div class="price">Rs 680</div><button onclick="add('Brownie 4',680)">Add</button></div>
-<div class="card"><img src="brownie2.jpg"><h3>Box of 6</h3><div class="price">Rs 1020</div><button onclick="add('Brownie 6',1020)">Add</button></div>
-<div class="card"><img src="brownie3.jpg"><h3>Box of 8</h3><div class="price">Rs 1360</div><button onclick="add('Brownie 8',1360)">Add</button></div>
-<div class="card"><img src="brownie4.jpg"><h3>Box of 10</h3><div class="price">Rs 1690</div><button onclick="add('Brownie 10',1690)">Add</button></div>
-<div class="card"><img src="brownie1.jpg"><h3>Box of 12</h3><div class="price">Rs 2000</div><button onclick="add('Brownie 12',2000)">Add</button></div>
+<div class="card"><img src="brownie1.jpg"><h3>Box of 4</h3><p>Rich fudgy brownies made with premium cocoa for a perfectly indulgent bite.</p><div class="price">Rs 680</div><button onclick="add('Brownie 4',680)">Add</button></div>
+<div class="card"><img src="brownie2.jpg"><h3>Box of 6</h3><p>Soft gooey centers with a crisp top layer creating a perfect balance of texture and flavor.</p><div class="price">Rs 1020</div><button onclick="add('Brownie 6',1020)">Add</button></div>
+<div class="card"><img src="brownie3.jpg"><h3>Box of 8</h3><p>Perfect for sharing delivering rich chocolate satisfaction in every bite.</p><div class="price">Rs 1360</div><button onclick="add('Brownie 8',1360)">Add</button></div>
+<div class="card"><img src="brownie4.jpg"><h3>Box of 10</h3><p>A generous box of handcrafted brownies ideal for gatherings and celebrations.</p><div class="price">Rs 1690</div><button onclick="add('Brownie 10',1690)">Add</button></div>
+<div class="card"><img src="brownie1.jpg"><h3>Box of 12</h3><p>The ultimate indulgence rich dense brownies made for true chocolate lovers.</p><div class="price">Rs 2000</div><button onclick="add('Brownie 12',2000)">Add</button></div>
 </div>
+</div>
+
+<div class="section">
+<h2>Tea Cakes</h2>
+<div class="grid">
+<div class="card"><img src="plain1.jpg"><h3>Plain Small</h3><p>Light fluffy tea cake with a soft buttery crumb perfect for everyday indulgence.</p><div class="price">Rs 500</div><button onclick="add('Plain Small',500)">Add</button></div>
+<div class="card"><img src="plain2.jpg"><h3>Plain Large</h3><p>A classic moist tea cake baked to perfection with a delicate rich flavor.</p><div class="price">Rs 1000</div><button onclick="add('Plain Large',1000)">Add</button></div>
+<div class="card"><img src="marble1.jpg"><h3>Marble Small</h3><p>A beautiful swirl of chocolate and vanilla creating a soft rich bite.</p><div class="price">Rs 600</div><button onclick="add('Marble Small',600)">Add</button></div>
+<div class="card"><img src="marble2.jpg"><h3>Marble Large</h3><p>Perfect blend of chocolate and vanilla baked into a moist luxurious loaf.</p><div class="price">Rs 1200</div><button onclick="add('Marble Large',1200)">Add</button></div>
+</div>
+</div>
+
+<div class="section">
+<h2>Khatai</h2>
+<div class="grid">
+<div class="card"><img src="khatai1.jpg"><h3>Plain 1KG</h3><p>Traditional buttery khatai with a delicate crumb and rich homemade flavor.</p><div class="price">Rs 2500</div><button onclick="add('Plain 1KG',2500)">Add</button></div>
+<div class="card"><img src="khatai2.jpg"><h3>Plain 1/2KG</h3><p>Classic melt in mouth khatai perfect for tea time cravings.</p><div class="price">Rs 1250</div><button onclick="add('Plain Half',1250)">Add</button></div>
+<div class="card"><img src="khatai1.jpg"><h3>Almond 1KG</h3><p>Premium khatai topped with almonds offering a rich nutty flavor.</p><div class="price">Rs 3000</div><button onclick="add('Almond 1KG',3000)">Add</button></div>
+<div class="card"><img src="khatai2.jpg"><h3>Almond 1/2KG</h3><p>Delicate almond khatai with a perfect balance of crunch and softness.</p><div class="price">Rs 1500</div><button onclick="add('Almond Half',1500)">Add</button></div>
+</div>
+</div>
+
+<!-- DELIVERY -->
+<div class="delivery">
+<h2>Next Day Delivery</h2>
+<p>For khatais, orders must be placed one day in advance.<br>
+Brownies and tea cakes are available for same-day delivery between 12 PM – 8 PM.</p>
+</div>
+
+<!-- REVIEWS -->
+<div class="review-box">
+<h2>Customer Reviews ⭐</h2>
+<input id="rname" placeholder="Your Name">
+<select id="rating">
+<option>⭐</option><option>⭐⭐</option><option>⭐⭐⭐</option>
+<option>⭐⭐⭐⭐</option><option>⭐⭐⭐⭐⭐</option>
+</select>
+<textarea id="review"></textarea>
+<button onclick="addReview()">Submit Review</button>
+<div id="reviews"></div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+Delivery charges should be paid by customers upon delivery.
 </div>
 
 <!-- CART -->
@@ -195,9 +175,7 @@ Account Title: TAHIRA BIBI<br>
 Bank: Meezan Bank
 </p>
 
-<p style="font-size:12px;">
-Please send screenshots of payments alongside the order details to avoid any inconveniences
-</p>
+<p>Please send screenshots of payments alongside the order details to avoid any inconveniences</p>
 
 <button onclick="checkout()">Checkout</button>
 </div>
@@ -206,19 +184,15 @@ Please send screenshots of payments alongside the order details to avoid any inc
 let cart=[];
 
 function add(name,price){
-let item = cart.find(i=>i.name===name);
-if(item){
-item.qty++;
-}else{
-cart.push({name,price,qty:1});
-}
+let item=cart.find(i=>i.name===name);
+if(item){item.qty++;}
+else{cart.push({name,price,qty:1});}
 render();
 }
 
 function render(){
 let list=document.getElementById('list');
-let total=0;
-let count=0;
+let total=0,count=0;
 list.innerHTML='';
 
 cart.forEach((item,i)=>{
@@ -228,8 +202,8 @@ count+=item.qty;
 list.innerHTML+=`
 <li>
 ${item.name} Rs ${item.price} x ${item.qty}
-<button class="qty-btn" onclick="changeQty(${i},-1)">➖</button>
-<button class="qty-btn" onclick="changeQty(${i},1)">➕</button>
+<button onclick="changeQty(${i},-1)">➖</button>
+<button onclick="changeQty(${i},1)">➕</button>
 <button onclick="removeItem(${i})">❌</button>
 </li>`;
 });
@@ -237,12 +211,8 @@ ${item.name} Rs ${item.price} x ${item.qty}
 document.getElementById('total').innerText="Total Rs "+total;
 
 let badge=document.getElementById('cartCount');
-if(count>0){
-badge.style.display='block';
+badge.style.display=count>0?'block':'none';
 badge.innerText=count;
-}else{
-badge.style.display='none';
-}
 }
 
 function changeQty(i,val){
@@ -251,10 +221,7 @@ if(cart[i].qty<=0) cart.splice(i,1);
 render();
 }
 
-function removeItem(i){
-cart.splice(i,1);
-render();
-}
+function removeItem(i){cart.splice(i,1);render();}
 
 function toggleCart(){
 document.getElementById('cart').classList.toggle('open');
@@ -262,21 +229,18 @@ document.getElementById('cart').classList.toggle('open');
 
 function checkout(){
 let text="Order:%0A";
-cart.forEach(i=> text+=i.name+" x"+i.qty+"%0A");
-text+="Name: "+name.value+"%0A";
-text+="Phone: "+phone.value+"%0A";
-text+="Address: "+address.value+"%0A";
-text+="Date: "+date.value;
+let total=0;
+
+cart.forEach(i=>{
+text+=`${i.name} x${i.qty} = Rs ${i.price*i.qty}%0A`;
+total+=i.price*i.qty;
+});
+
+text+=`Total: Rs ${total}%0A`;
+text+=`Name: ${name.value}%0APhone: ${phone.value}%0AAddress: ${address.value}%0ADate: ${date.value}`;
+
 window.open("https://wa.me/923124366560?text="+text);
 }
-
-/* HERO SLIDER */
-let images=["brownie1.jpg","plain1.jpg","khatai1.jpg"];
-let i=0;
-setInterval(()=>{
-i=(i+1)%images.length;
-document.getElementById("hero").style.backgroundImage=`url(${images[i]})`;
-},3000);
 </script>
 
 </body>
