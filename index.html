@@ -1,233 +1,288 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Crayv'n Crumbs</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
+body {margin:0;font-family:sans-serif;background:#faf7f4;}
+
+header {
+display:flex;
+justify-content:space-between;
+padding:15px;
+background:white;
+align-items:center;
 }
 
-/* HEADER */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  background: #fff;
-}
+.logo {font-size:24px;font-weight:bold;color:#b57edc;}
 
-.logo {
-  font-size: 24px;
-  color: #b57edc;
-  font-weight: bold;
+.icons {display:flex;align-items:center;gap:15px;position:relative;}
+
+.cart-btn {cursor:pointer;font-size:26px;position:relative;}
+
+.cart-count {
+position:absolute;top:-8px;right:-10px;
+background:red;color:white;font-size:12px;
+padding:2px 6px;border-radius:50%;display:none;
 }
 
 /* HERO */
 .hero {
+height:55vh;
+display:flex;justify-content:center;align-items:center;
+background-size:cover;background-position:center;
+}
+
+.hero {
+  position: relative;
   height: 60vh;
   min-height: 350px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: white;
-  position: relative;
+  color: #fff;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-position: center;
-  transition: background-image 1s ease-in-out;
-}
-
-.hero-text {
-  background: rgba(0,0,0,0.4);
-  padding: 15px 25px;
-  border-radius: 10px;
-}
-
-.hero h1 {
-  font-size: 36px;
-  margin: 0;
-  color: #d8a7ff;
-}
-
-.hero p {
-  margin-top: 8px;
+  transition: opacity 1s ease-in-out;
+  z-index: -1;
+  opacity: 1;
 }
 
 /* PRODUCTS */
-.section {
-  padding: 20px;
-}
-
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-  gap: 15px;
+.section {padding:30px;}
+.grid {
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
 }
 
 .card {
-  background: white;
-  padding: 10px;
-  border-radius: 10px;
-  text-align: center;
+background:white;padding:15px;border-radius:15px;text-align:center;
 }
-
 .card img {
-  width: 100%;
-  border-radius: 10px;
+width:100%;height:180px;object-fit:cover;border-radius:10px;
 }
-
+.price {font-weight:bold;margin-top:5px;}
 button {
-  background: #b57edc;
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-/* CART ICON */
-.cart-icon {
-  position: relative;
-  cursor: pointer;
-}
-
-.cart-count {
-  position: absolute;
-  top: -5px;
-  right: -8px;
-  background: red;
-  color: white;
-  font-size: 12px;
-  padding: 2px 6px;
-  border-radius: 50%;
+padding:6px 10px;margin-top:10px;
+background:#b57edc;color:white;border:none;border-radius:8px;
 }
 
 /* CART */
-.cart {
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 300px;
-  height: 100%;
-  background: white;
-  padding: 20px;
-  box-shadow: -2px 0 10px rgba(0,0,0,0.2);
-  display: none;
+#cart {
+position:fixed;right:-100%;top:0;width:320px;height:100%;
+background:white;padding:20px;transition:0.3s;overflow:auto;
+}
+#cart.open {right:0;}
+
+.delivery {
+background:#d9c7b8;text-align:center;padding:40px 20px;
 }
 
-.close {
-  cursor: pointer;
-  font-size: 20px;
-  float: right;
+.review-box {background:#f5f5f5;padding:30px;}
+.review-item {
+background:white;padding:10px;margin-top:10px;border-radius:8px;
 }
+
+.footer {text-align:center;padding:15px;}
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<div class="header">
-  <div class="logo">Crayv'n Crumbs</div>
-  <div class="cart-icon" onclick="toggleCart()">
-    🛒
-    <span class="cart-count" id="count">0</span>
-  </div>
-</div>
+<header>
+<div class="logo">Crayv'n Crumbs</div>
 
-<!-- HERO -->
+<div class="icons">
+<a href="https://www.instagram.com/crayvn_crumbs/" target="_blank">
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" width="24">
+</a>
+
+<div class="cart-btn" onclick="toggleCart()">
+🛒 <span id="cartCount" class="cart-count">0</span>
+</div>
+</div>
+</header>
+
 <div class="hero" id="hero">
-  <div class="hero-text">
-    <h1>Crayv'n Crumbs</h1>
-    <p>Luxury handmade desserts 💜</p>
-  </div>
+<h1>Crayv'n Crumbs</h1>
 </div>
 
 <!-- PRODUCTS -->
-<div class="section">
-  <h2>Brownies</h2>
-  <div class="products">
-    <div class="card">
-      <img src="brownie1.jpg">
-      <h3>Box of 4</h3>
-      <p>Rs 680</p>
-      <button onclick="addItem()">Add</button>
-    </div>
 
-    <div class="card">
-      <img src="brownie2.jpg">
-      <h3>Box of 6</h3>
-      <p>Rs 1020</p>
-      <button onclick="addItem()">Add</button>
-    </div>
-  </div>
+<div class="section">
+<h2>Brownies</h2>
+<div class="grid">
+<div class="card"><img src="brownie1.jpg"><h3>Box of 4</h3><p>Rich fudgy brownies made with premium cocoa for a perfectly indulgent bite.</p><div class="price">Rs 680</div><button onclick="add('Brownie 4',680)">Add</button></div>
+<div class="card"><img src="brownie2.jpg"><h3>Box of 6</h3><p>Soft gooey centers with a crisp top layer creating a perfect balance of texture and flavor.</p><div class="price">Rs 1020</div><button onclick="add('Brownie 6',1020)">Add</button></div>
+<div class="card"><img src="brownie3.jpg"><h3>Box of 8</h3><p>Perfect for sharing delivering rich chocolate satisfaction in every bite.</p><div class="price">Rs 1360</div><button onclick="add('Brownie 8',1360)">Add</button></div>
+<div class="card"><img src="brownie4.jpg"><h3>Box of 10</h3><p>A generous box of handcrafted brownies ideal for gatherings and celebrations.</p><div class="price">Rs 1690</div><button onclick="add('Brownie 10',1690)">Add</button></div>
+<div class="card"><img src="brownie1.jpg"><h3>Box of 12</h3><p>The ultimate indulgence rich dense brownies made for true chocolate lovers.</p><div class="price">Rs 2000</div><button onclick="add('Brownie 12',2000)">Add</button></div>
+</div>
+</div>
+
+<div class="section">
+<h2>Tea Cakes</h2>
+<div class="grid">
+<div class="card"><img src="plain1.jpg"><h3>Plain Small</h3><p>Light fluffy tea cake with a soft buttery crumb perfect for everyday indulgence.</p><div class="price">Rs 500</div><button onclick="add('Plain Small',500)">Add</button></div>
+<div class="card"><img src="plain2.jpg"><h3>Plain Large</h3><p>A classic moist tea cake baked to perfection with a delicate rich flavor.</p><div class="price">Rs 1000</div><button onclick="add('Plain Large',1000)">Add</button></div>
+<div class="card"><img src="marble1.jpg"><h3>Marble Small</h3><p>A beautiful swirl of chocolate and vanilla creating a soft rich bite.</p><div class="price">Rs 600</div><button onclick="add('Marble Small',600)">Add</button></div>
+<div class="card"><img src="marble2.jpg"><h3>Marble Large</h3><p>Perfect blend of chocolate and vanilla baked into a moist luxurious loaf.</p><div class="price">Rs 1200</div><button onclick="add('Marble Large',1200)">Add</button></div>
+</div>
+</div>
+
+<div class="section">
+<h2>Khatai</h2>
+<div class="grid">
+<div class="card"><img src="khatai1.jpg"><h3>Plain 1KG</h3><p>Traditional buttery khatai with a delicate crumb and rich homemade flavor.</p><div class="price">Rs 2500</div><button onclick="add('Plain 1KG',2500)">Add</button></div>
+<div class="card"><img src="khatai2.jpg"><h3>Plain 1/2KG</h3><p>Classic melt in mouth khatai perfect for tea time cravings.</p><div class="price">Rs 1250</div><button onclick="add('Plain Half',1250)">Add</button></div>
+<div class="card"><img src="khatai1.jpg"><h3>Almond 1KG</h3><p>Premium khatai topped with almonds offering a rich nutty flavor.</p><div class="price">Rs 3000</div><button onclick="add('Almond 1KG',3000)">Add</button></div>
+<div class="card"><img src="khatai2.jpg"><h3>Almond 1/2KG</h3><p>Delicate almond khatai with a perfect balance of crunch and softness.</p><div class="price">Rs 1500</div><button onclick="add('Almond Half',1500)">Add</button></div>
+</div>
+</div>
+
+<!-- DELIVERY -->
+<div class="delivery">
+<h2>Next Day Delivery</h2>
+<p>For khatais, orders must be placed one day in advance.<br>
+Brownies and tea cakes are available for same-day delivery between 12 PM – 8 PM.</p>
+</div>
+
+<!-- REVIEWS -->
+<div class="review-box">
+<h2>Customer Reviews ⭐</h2>
+<input id="rname" placeholder="Your Name">
+<select id="rating">
+<option>⭐</option><option>⭐⭐</option><option>⭐⭐⭐</option>
+<option>⭐⭐⭐⭐</option><option>⭐⭐⭐⭐⭐</option>
+</select>
+<textarea id="review"></textarea>
+<button onclick="addReview()">Submit Review</button>
+<div id="reviews"></div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+Delivery charges should be paid by customers upon delivery.
 </div>
 
 <!-- CART -->
-<div class="cart" id="cart">
-  <span class="close" onclick="toggleCart()">✖</span>
-  <h3>Your Cart</h3>
-  <p id="items">No items</p>
+<div id="cart">
+<span onclick="toggleCart()">❌</span>
+<h2>Your Cart</h2>
+<ul id="list"></ul>
+<h3 id="total">Total Rs 0</h3>
 
-  <h4>Total Rs <span id="total">0</span></h4>
+<input id="name" placeholder="Name">
+<input id="phone" placeholder="Phone">
+<textarea id="address" placeholder="Address"></textarea>
+<input type="date" id="date">
 
-  <input placeholder="Name"><br><br>
-  <input placeholder="Phone"><br><br>
-  <textarea placeholder="Address"></textarea><br><br>
-  <input type="date"><br><br>
+<p><b>Payment Details:</b><br>
+IBAN: PK55 MEZN 0028010104563491<br>
+Account Title: TAHIRA BIBI<br>
+Bank: Meezan Bank
+</p>
 
-  <p><b>IBAN:</b> PK55 MEZN 0028010104563491</p>
-  <p><b>Account Title:</b> TAHIRA BIBI</p>
+<p>Please send screenshots of payments alongside the order details to avoid any inconveniences</p>
 
-  <p style="font-size:12px;">
-    Please send screenshots of payments alongside the order details to avoid any inconveniences
-  </p>
-
-  <button>Checkout</button>
+<button onclick="checkout()">Checkout</button>
 </div>
 
-<!-- JS -->
 <script>
-// CART
-let count = 0;
-let total = 0;
+let cart=[];
 
-function addItem() {
-  count++;
-  total += 100;
-  document.getElementById("count").innerText = count;
-  document.getElementById("total").innerText = total;
-  document.getElementById("items").innerText = count + " item(s)";
+function add(name,price){
+let item=cart.find(i=>i.name===name);
+if(item){item.qty++;}
+else{cart.push({name,price,qty:1});}
+render();
 }
 
-function toggleCart() {
-  let cart = document.getElementById("cart");
-  cart.style.display = cart.style.display === "block" ? "none" : "block";
+function render(){
+let list=document.getElementById('list');
+let total=0,count=0;
+list.innerHTML='';
+
+cart.forEach((item,i)=>{
+total+=item.price*item.qty;
+count+=item.qty;
+
+list.innerHTML+=`
+<li>
+${item.name} Rs ${item.price} x ${item.qty}
+<button onclick="changeQty(${i},-1)">➖</button>
+<button onclick="changeQty(${i},1)">➕</button>
+<button onclick="removeItem(${i})">❌</button>
+</li>`;
+});
+
+document.getElementById('total').innerText="Total Rs "+total;
+
+let badge=document.getElementById('cartCount');
+badge.style.display=count>0?'block':'none';
+badge.innerText=count;
 }
 
-/* HERO SLIDER FIX */
-const images = [
+function changeQty(i,val){
+cart[i].qty+=val;
+if(cart[i].qty<=0) cart.splice(i,1);
+render();
+}
+
+function removeItem(i){cart.splice(i,1);render();}
+
+function toggleCart(){
+document.getElementById('cart').classList.toggle('open');
+}
+
+function checkout(){
+let text="Order:%0A";
+let total=0;
+
+cart.forEach(i=>{
+text+=`${i.name} x${i.qty} = Rs ${i.price*i.qty}%0A`;
+total+=i.price*i.qty;
+});
+
+text+=`Total: Rs ${total}%0A`;
+text+=`Name: ${name.value}%0APhone: ${phone.value}%0AAddress: ${address.value}%0ADate: ${date.value}`;
+
+window.open("https://wa.me/923124366560?text="+text);
+}
+<script>
+const heroImages = [
   "brownie1.jpg",
   "brownie2.jpg",
   "cake1.jpg",
+  "cake2.jpg",
   "khatai1.jpg"
 ];
 
-let i = 0;
-const hero = document.getElementById("hero");
+let heroIndex = 0;
+const hero = document.querySelector(".hero");
 
-function changeHero() {
-  hero.style.backgroundImage = `url(${images[i]})`;
-  i = (i + 1) % images.length;
+function changeHeroImage() {
+  hero.style.backgroundImage = `url(${heroImages[heroIndex]})`;
+  hero.style.backgroundSize = "cover";
+  hero.style.backgroundPosition = "center";
+  heroIndex = (heroIndex + 1) % heroImages.length;
 }
 
-changeHero();
-setInterval(changeHero, 3000);
+// First load
+changeHeroImage();
+
+// Change every 3 seconds
+setInterval(changeHeroImage, 3000);
 </script>
 
 </body>
