@@ -241,12 +241,6 @@ text+=`Name: ${name.value}%0APhone: ${phone.value}%0AAddress: ${address.value}%0
 
 window.open("https://wa.me/923124366560?text="+text);
 }
-let images=["brownie1.jpg","plain1.jpg","khatai1.jpg"];
-let i=0;
-setInterval(()=>{
-i=(i+1)%images.length;
-document.getElementById("hero").style.backgroundImage=url(${images[i]});
-},3000);
 </script>
 
 </body>
