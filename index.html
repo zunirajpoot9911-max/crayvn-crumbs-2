@@ -242,6 +242,28 @@ text+=`Name: ${name.value}%0APhone: ${phone.value}%0AAddress: ${address.value}%0
 window.open("https://wa.me/923124366560?text="+text);
 }
 </script>
+const heroImages = [
+  "brownie1.jpg",
+  "brownie2.jpg",
+  "cake1.jpg",
+  "cake2.jpg",
+  "khatai1.jpg"
+];
 
+let heroIndex = 0;
+const hero = document.querySelector(".hero");
+
+function changeHeroImage() {
+  hero.style.backgroundImage = url(${heroImages[heroIndex]});
+  hero.style.backgroundSize = "cover";
+  hero.style.backgroundPosition = "center";
+  heroIndex = (heroIndex + 1) % heroImages.length;
+}
+
+// First load
+changeHeroImage();
+
+// Change every 3 seconds
+setInterval(changeHeroImage, 3000);
 </body>
 </html>
